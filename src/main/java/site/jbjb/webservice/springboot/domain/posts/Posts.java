@@ -3,6 +3,7 @@ package site.jbjb.webservice.springboot.domain.posts;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import site.jbjb.webservice.springboot.domain.BaseTimeEntity;
 
 import javax.persistence.*;
 
@@ -16,7 +17,7 @@ import javax.persistence.*;
 // Entity 클래스에는 Setter 메소드를 만들지 않음
 // 해당 클래스의 인스턴스 값이 언제 어디서 변해야 하는지 코드상으로 명확하게 구분할 수 없기 때문
 // 필드의 값 변경이 필요하면 목적과 의도를 명확히 나타내는 메소드를 추가
-public class Posts {
+public class Posts extends BaseTimeEntity {
 
     // 해당 테이블의 PK 필드
     @Id
@@ -44,5 +45,10 @@ public class Posts {
         this.title = title;
         this.content = content;
         this.author = author;
+    }
+
+    public void update(String title, String content) {
+        this.title = title;
+        this.content = content;
     }
 }
