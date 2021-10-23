@@ -38,6 +38,8 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     // 인메모리 관계형 데이터베이스. 메모리에서 실행되기 때문에 앱을 재시작할 때마다 초기화
     compile('com.h2database:h2')
+    compile('com.google.code.gson:gson')
+    compile('org.springframework.boot:spring-boot-starter-oauth2-client')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
