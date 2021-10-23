@@ -1,11 +1,15 @@
 package site.jbjb.webservice.springboot.web;
 
+import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import site.jbjb.webservice.springboot.service.posts.PostsService;
+import site.jbjb.webservice.springboot.web.dto.PostsListResponseDto;
 import site.jbjb.webservice.springboot.web.dto.PostsResponseDto;
 import site.jbjb.webservice.springboot.web.dto.PostsSaveRequestDto;
 import site.jbjb.webservice.springboot.web.dto.PostsUpdateRequestDto;
+
+import java.util.List;
 
 // 왜 @Autowired 가 없는가?
 // 스프링에서 Bean 을 주입받는 방식
@@ -29,7 +33,21 @@ public class PostsApiController {
     }
 
     @GetMapping("/api/v1/posts/{id}")
-    public PostsResponseDto findById (@PathVariable Long id) {
+    public PostsResponseDto findById(@PathVariable Long id) {
         return postsService.findById(id);
+    }
+
+    @GetMapping("/")
+    public String findAllDesc() {
+        List allPosts = postsService.findAllDesc();
+        Gson gson = new Gson();
+        String result = gson.toJson(allPosts);
+        return result;
+    }
+
+    @DeleteMapping("/api/v1/posts/{id}")
+    public Long delete(@PathVariable Long id) {
+        postsService.delete(id);
+        return id;
     }
 }
